@@ -1,172 +1,252 @@
 # RADSAFE — UI/UX Guidelines
 
-## 1. Product experience
+## 1. Product Overview
 
-RADSAFE should feel like a clear, trustworthy medical-informatics dashboard: professional, calm, light, structured, and easy to scan. It is not a consumer fitness app and should not use alarming visuals to imply patient danger.
+RADSAFE is a role-based medical web application designed for Medical Physicists.
 
-## 2. Agreed visual direction
+The interface should support:
 
-- Theme: **Light**
-- Design approach: **Hybrid** — clean dashboard structure with focused data visualizations and clinical tables.
-- Frontend implementation: HTML/CSS/JavaScript.
-- Design tool: Figma.
+- RDSR file upload.
+- Extracted data review.
+- Patient management.
+- Examination history.
+- Dose analytics.
+- DRL comparison.
+- PDF reports.
+- Hospital and user administration.
 
-### Color palette
+## 2. Visual Direction
 
-| Purpose | Color |
-|---|---|
-| Main background | `#F5F7FB` |
-| Primary navy | `#193B63` |
-| Primary action blue | `#3478C8` |
-| Accent teal | `#20A69A` |
-| Surface | `#FFFFFF` |
-| Main text | `#1F2937` |
-| Secondary text | `#64748B` |
-| Border | `#E2E8F0` |
-| Warning | `#D97706` |
-| Error | `#DC2626` |
+### Theme
+- Light theme.
+- White and light-gray backgrounds.
+- Navy and dark-blue primary colors.
+- Light-blue accents.
+- Restrained status colors.
 
-Use warning/error colors only for meaningful states. Do not use red to suggest that a patient's cumulative dose is inherently dangerous.
+### Layout
+- Left sidebar navigation.
+- Top bar for page title and user information.
+- Main content area.
+- Summary cards.
+- Tables for patients and examinations.
+- Charts for dose analytics.
 
-## 3. Typography
+The design should be clean, modern, professional, and easy to use.
 
-Use Inter or Roboto with a consistent hierarchy:
-- Page title: 24–28 px.
-- Section title: 18–20 px.
-- Card title: 14–16 px.
-- Body: 14–16 px.
-- Table/helper text: 12–14 px.
+## 3. Frontend Technology
 
-Maintain readable line height and avoid dense blocks of text.
+The agreed MVP frontend:
 
-## 4. Navigation
+- HTML.
+- CSS.
+- JavaScript.
+- Bootstrap 5.
+- Chart.js.
 
-Suggested main navigation:
+Figma will be used for wireframes and UI design.
+
+A free UI Kit or Bootstrap-based template can be used as a starting point and customized for RADSAFE.
+
+React is not part of the current agreed MVP stack.
+
+## 4. User Roles and Navigation
+
+### Medical Physicist
 1. Dashboard
 2. Upload RDSR
 3. Patients
-4. Analytics
-5. Match Review (show only when relevant/authorized)
-6. Settings (later)
+4. Dose Analytics
+5. DRL Comparison
+6. Reports
+7. Profile / Logout
 
-Keep the main action, Upload RDSR, easy to locate.
+### System Admin
+1. Dashboard
+2. Hospitals
+3. Users
+4. Account Status
+5. Profile / Logout
 
-## 5. Dashboard layout
+Patients do not have a portal or login in the MVP.
 
-- Top header with RADSAFE identity and user/session area.
-- Sidebar or compact navigation.
-- Main content with summary cards.
-- Recent upload/activity table.
-- Shortcuts to upload and search.
-- Avoid presenting a global cumulative-dose number across unrelated patients as if it were clinically meaningful.
+## 5. Main Screens
 
-## 6. Patient profile layout
+### 5.1 Login
+- Email input.
+- Password input.
+- Login button.
+- Clear validation and error messages.
+- No public registration link.
 
-The patient profile is the core screen.
+### 5.2 Medical Physicist Dashboard
+Display:
+- Number of processed examinations.
+- Number of patients in the assigned hospital.
+- Recent uploads.
+- Processing statuses.
+- Items requiring review.
+- Quick access to Upload RDSR and Patients.
 
-### Header
-- RADSAFE Patient ID as the primary visible identifier.
-- Status: confirmed record / review required.
-- Do not show full name or direct identifiers by default.
+Dashboard data must belong to the authenticated user's hospital only.
 
-### Summary
-- Number of recorded CT examinations.
-- First and latest recorded examination dates.
-- Cumulative estimated effective dose, with coverage and method note.
+### 5.3 System Admin Dashboard
+Display:
+- Registered hospitals.
+- Medical Physicist accounts.
+- Account activation status.
+- Administrative shortcuts.
 
-### History
-A chronological table or timeline with:
-- Date/time.
-- Examination / anatomical region.
-- Institution/scanner (if available).
-- CTDIvol (mGy).
-- DLP (mGy·cm).
-- Estimated effective dose (mSv).
-- Parsing/validation status.
+Avoid unnecessary exposure of patient dose information.
 
-### Chart
-- X-axis: examination date.
-- Y-axis: estimated effective dose per examination or cumulative estimated effective dose; label the selected view clearly.
-- Tooltip includes date, exam, value, and unit.
-- Missing values must remain missing, not plotted as zero.
-
-## 7. Upload experience
-
-Show:
-- What file type is expected.
-- File selection/drop zone.
+### 5.4 Upload RDSR
+Include:
+- Upload area.
+- Supported file guidance.
+- File restrictions.
 - Upload progress.
-- Processing steps: received → validating → parsing → matching → saved.
-- Clear result and next action.
+- Processing status.
+- Validation errors.
+- Parsing warnings.
+- Review extracted data action.
 
-Possible statuses:
-- Uploaded successfully.
-- Unsupported DICOM object.
-- RDSR parsed; patient match required.
-- Examination saved to existing patient.
-- New patient record created.
-- Partial extraction; review warnings.
+A `.dcm` extension alone does not prove that a file is a valid RDSR.
 
-## 8. Patient matching experience
+### 5.5 Patient List
+Use a searchable table containing appropriate patient identifiers and summary information.
 
-This is a safety-critical workflow:
-- Display candidate matches without exposing unnecessary identity information.
-- Explain which matching evidence is available.
-- Use neutral wording such as “Possible match” rather than “Same patient”.
-- Require explicit confirmation for uncertain matches.
-- Offer “Create new patient” and “Review later”.
-- Confirm before merging records and explain the consequences.
-- Keep a visible audit history for decisions.
+Include:
+- Loading state.
+- Empty state.
+- Error state.
+- Clear patient details action.
 
-## 9. Dose and clinical language
+### 5.6 Patient Profile
+Display:
+- RADSAFE Patient ID.
+- Available patient identifiers with suitable privacy controls.
+- Examination history.
+- Examination dates and descriptions.
+- Links to examination details.
 
-Prefer:
-- “Estimated effective dose”
-- “Recorded CT examinations”
-- “Cumulative estimate for available records”
-- “Reference comparison”
+### 5.7 Examination Details
+Organize information into:
+- Study Information.
+- Scanner Information.
+- Irradiation Events.
+- Dose Values and Units.
+- Acquisition Parameters.
+- Source and Processing Warnings.
 
-Avoid:
-- “Patient's exact radiation dose”
-- “Cancer risk score”
-- “Safe/unsafe patient dose”
-- “Exceeded limit” unless a properly defined, applicable rule exists (the MVP should not make such claims).
+Clearly distinguish source-reported values from calculated estimates.
 
-## 10. Components
+### 5.8 Dose Analytics
+- Use Chart.js.
+- Display units and axis labels.
+- Allow suitable date-range and examination-group filtering.
+- Avoid combining incompatible measurements.
+- Label estimated values and their references.
 
-Design reusable:
-- Metric cards.
-- Status badges.
-- Data tables.
-- Search field.
-- Upload drop zone.
-- Timeline.
-- Chart container.
-- Warning/empty/error panels.
-- Confirmation modal.
-- Pagination (if needed).
+### 5.9 DRL Comparison
+Display:
+- Examination group.
+- Metric and unit.
+- DRL reference value.
+- Source.
+- Comparison result.
+- Method and group definition.
 
-## 11. Responsive and accessibility requirements
+Include a note that DRLs are group-level optimization references, not individual patient dose limits.
 
-- Desktop-first for data-heavy workflows, but support tablet and mobile widths.
-- Keyboard-operable controls.
-- Visible focus states.
-- Sufficient text/background contrast.
-- Labels for form fields and chart descriptions.
-- Do not rely on color alone to communicate status.
-- Tables should remain readable; use horizontal scrolling only when necessary.
+### 5.10 Reports
+- List authorized reports.
+- Display report date and scope.
+- Provide download action.
+- Restrict access to the user's hospital.
 
-## 12. Figma handoff
+### 5.11 Hospital Management
+System Admin can:
+- Create hospitals.
+- Edit hospital information.
+- View hospital status.
 
-Each screen should include:
-- Screen name and purpose.
-- Desktop and tablet layout.
-- Component states.
-- Spacing and typography tokens.
-- Empty/loading/error examples.
-- Notes for responsive behavior.
-- Redlines or clear implementation notes.
+### 5.12 User Management
+System Admin can:
+- Create Medical Physicist accounts.
+- Assign accounts to hospitals.
+- Activate/deactivate accounts.
+- View role and hospital assignment.
 
-## 13. Design acceptance checklist
+## 6. UI States
 
-The UI is ready for handoff when the core screens share a consistent design system, patient identity is privacy-conscious, missing/uncertain values are clearly represented, and a first-time user can complete upload → review → patient history without guidance.
+Every data-driven screen should support:
+
+- Loading.
+- Empty.
+- Success.
+- Validation Error.
+- Server Error.
+- Unauthorized / Forbidden.
+- Review Required.
+
+Use understandable messages. Do not expose raw backend exceptions or stack traces.
+
+## 7. Responsive Design
+
+Prioritize desktop and laptop layouts because the application contains detailed tables and examination data.
+
+Also support:
+- Collapsible sidebar.
+- Responsive tables.
+- Vertically stacked cards on mobile.
+- Readable forms.
+- Responsive charts.
+
+## 8. Accessibility
+
+- Use readable font sizes.
+- Maintain sufficient contrast.
+- Add labels to form controls.
+- Support keyboard navigation.
+- Do not rely on color alone.
+- Use consistent terminology.
+
+## 9. Figma Design Workflow
+
+1. Create the design system.
+2. Define colors, typography, spacing, buttons, and inputs.
+3. Design the shared sidebar and top bar.
+4. Design Login.
+5. Design Medical Physicist Dashboard.
+6. Design Upload RDSR.
+7. Design Patient List and Patient Profile.
+8. Design Examination Details.
+9. Design Dose Analytics.
+10. Design DRL Comparison.
+11. Design Reports.
+12. Design System Admin pages.
+
+Start with the shared layout and the core workflow instead of designing all screens at once.
+
+## 10. Frontend Integration Rules
+
+- Fetch real application data through backend APIs.
+- Never depend on frontend filtering for security.
+- Handle loading, empty, and error responses.
+- Do not invent missing dose values.
+- Always show units and data context.
+- Distinguish source values from estimates.
+- Do not label demo data as real hospital data.
+
+## 11. Design Acceptance Checklist
+
+- [ ] Medical Physicist and System Admin have different navigation.
+- [ ] No Patient Portal or public registration.
+- [ ] Medical Physicists see only their hospital's data.
+- [ ] Upload and processing statuses are clear.
+- [ ] Patient matching uncertainty is visible.
+- [ ] Dose values display units.
+- [ ] Estimates are distinguished from source values.
+- [ ] DRL comparison is explained as group-level.
+- [ ] Tables and charts are responsive.
+- [ ] Loading, empty, success, and error states are designed.
