@@ -1,4 +1,3 @@
-::: {align="center"}
 # ☢️ RADSAFE
 
 ### **Patient-Centric Longitudinal CT Radiation Dose Tracking & Cumulative Exposure Analysis System**
