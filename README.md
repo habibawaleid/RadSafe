@@ -3,18 +3,18 @@
 # ☢️ RADSAFE
 ### **Patient-Centric Longitudinal CT Radiation Dose Tracking & Cumulative Exposure Analysis System**
 
-[![Java](https://img.shields.io/badge/Java-21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
-[![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)](https://spring.io/projects/spring-boot)
-[![DICOM](https://img.shields.io/badge/DICOM-RDSR_%7C_dcm4che-0078D7?style=for-the-badge&logo=dicom&logoColor=white)](https://www.dcm4che.org/)
-[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
-[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
-[![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
-[![Status](https://img.shields.io/badge/Phase_1-Foundation_In_Progress-0284C7?style=for-the-badge)](#)
+![Java](https://img.shields.io/badge/Java-21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
+![DICOM](https://img.shields.io/badge/DICOM-RDSR_%7C_dcm4che-0078D7?style=for-the-badge&logo=dicom&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
+![Status](https://img.shields.io/badge/Phase_1-Foundation_In_Progress-0284C7?style=for-the-badge)
 
 *A Vendor-Neutral Medical Informatics Platform that unifies CT Radiation Dose Structured Reports (RDSR) across different scanner manufacturers (Siemens, Philips, GE, Toshiba) into a single longitudinal Patient Radiation Passport.*
 
-[Overview](#-project-overview) • [Architecture](#-system-architecture) • [Roadmap](#-full-project-roadmap) • [Team](#-team--responsibilities) • [Documentation](#-documentation-index)
+[Overview](#-project-overview) • [Architecture](#-system-architecture--workflow) • [Roadmap](#-full-project-roadmap) • [Team](#-team--responsibilities) • [Documentation](#-documentation-index)
 
 </div>
 
@@ -66,4 +66,3 @@ In modern radiology workflows, CT scanner vendors (Siemens, Philips, GE, Canon/T
 ├── radsafe-backend/                              # Java 21 + Spring Boot Backend Application
 └── README.md                                     # Project overview & roadmap
 📚 Documentation IndexProject Scope: Problem statement, vendor-neutral goals, and clinical safety disclaimers.SRS & Development Plan: Functional requirements, database entities (Patient, Examination, DoseMetric), and API specifications.User Flow: Step-by-step operational workflow from RDSR file upload to PDF Radiation Passport export.UI/UX Guidelines: Color palette, typography, and layout specifications for the Patient Dose Profile and Dashboard.Medical Physics Research Plan: CTDIvol, DLP, k-factor sources, cumulative dose methodology, and manual verification protocol.
-
